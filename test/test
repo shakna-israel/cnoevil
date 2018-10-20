@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+# Pre-compile our header.
+gcc ../evil.h
+
+# Only use GNU Parallel if we can find it.
+command -v parallel >/dev/null
+if [ $? -ne 0 ]; then
+  # No parallel, do it one at a time.
+  for f in *.c; do
+   ./dofile "$f"
+  done
+else
+  # Ooh. Do all of them at once.
+  parallel ./dofile ::: *.c
+fi
+
+# Remove the precompiled header.
+rm ../evil.h.gch
