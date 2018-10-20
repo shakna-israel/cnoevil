@@ -9,6 +9,8 @@
 // We reserve EVIL_ for module names.
 // Long module names are discouraged.
 //
+// We don't break C. We extend only.
+//
 // CNoEvil is intended to be intuitive to write,
 // and clear to read.
 //
