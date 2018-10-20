@@ -377,10 +377,45 @@
   #define cli_fg_256(num) assert(num < 256); printf("%s%d%s", "\x1b[38;5;", num, "m")
   #define cli_bg_256(num) assert(num < 256); printf("%s%d%s", "\x1b[48;5;", val, "m")
 
+  // Also known as truecolor.
   #define cli_fg_rgb(a, b, c) printf("\x1b[38;2;%d;%d;%d", a, b, c)
   #define cli_bg_rgb(a, b, c) printf("\x1b[48;2;%d;%d;%d", a, b, c)
 
-  //TODO: Basic colors, bright colors. Both fg and bg.
+  #define cli_fg_black() printf("%s", "\x1b[30m");
+  #define cli_fg_red() printf("%s", "\x1b[31m");
+  #define cli_fg_green() printf("%s", "\x1b[32m");
+  #define cli_fg_yellow() printf("%s", "\x1b[33m");
+  #define cli_fg_blue() printf("%s", "\x1b[34m");
+  #define cli_fg_magenta() printf("%s", "\x1b[35m");
+  #define cli_fg_cyan() printf("%s", "\x1b[36m");
+  #define cli_fg_white() printf("%s", "\x1b[37m");
+
+  #define cli_fg_bright_black() printf("%s", "\x1b[30;1m");
+  #define cli_fg_bright_red() printf("%s", "\x1b[31;1m");
+  #define cli_fg_bright_green() printf("%s", "\x1b[32;1m");
+  #define cli_fg_bright_yellow() printf("%s", "\x1b[33;1m");
+  #define cli_fg_bright_blue() printf("%s", "\x1b[34;1m");
+  #define cli_fg_bright_magenta() printf("%s", "\x1b[35;1m");
+  #define cli_fg_bright_cyan() printf("%s", "\x1b[36;1m");
+  #define cli_fg_bright_white() printf("%s", "\x1b[37;1m");
+
+  #define cli_bg_black() printf("%s", "\x1b[40m");
+  #define cli_bg_red() printf("%s", "\x1b[41m");
+  #define cli_bg_green() printf("%s", "\x1b[42m");
+  #define cli_bg_yellow() printf("%s", "\x1b[43m");
+  #define cli_bg_blue() printf("%s", "\x1b[44m");
+  #define cli_bg_magenta() printf("%s", "\x1b[45m");
+  #define cli_bg_cyan() printf("%s", "\x1b[46m");
+  #define cli_bg_white() printf("%s", "\x1b[47m");
+
+  #define cli_bg_bright_black() printf("%s", "\x1b[40;1m");
+  #define cli_bg_bright_red() printf("%s", "\x1b[41;1m");
+  #define cli_bg_bright_green() printf("%s", "\x1b[42;1m");
+  #define cli_bg_bright_yellow() printf("%s", "\x1b[43;1m");
+  #define cli_bg_bright_blue() printf("%s", "\x1b[44;1m");
+  #define cli_bg_bright_magenta() printf("%s", "\x1b[45;1m");
+  #define cli_bg_bright_cyan() printf("%s", "\x1b[46;1m");
+  #define cli_bg_bright_white() printf("%s", "\x1b[47;1m");
 
   #define cli_cursor_up(num) printf("\x1b%dA", num)
   #define cli_cursor_down(num) printf("\x1b%dB", num)
