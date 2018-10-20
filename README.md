@@ -21,6 +21,8 @@ end
 
 CNoEvil is contained into a single C header file, [evil.h](evil.h). Drop that file somewhere in your include path.
 
+You will need a C compiler capable of the C11 standard, and some optional features may require a GNU compiler.
+
 Define which modules you want to use, or not use, and then include it.
 
 ```
