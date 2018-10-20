@@ -41,8 +41,24 @@
   void evil_manual(void);
   void evil_explain(char* token);
 
+  #include <string.h>
   void evil_explain(char* token) {
-    printf("%s\n", "Explain Not-Yet-Implemented.");
+    if(strcmp(token, "Main") == 0) {
+      printf("%s\n", "This implements the beginning of a main function, and provides argc and argv. It expects that `then` will follow it.");
+      printf("%s\n", "Mostly, it's a convenience function.");
+    } else if(strcmp(token, "then") == 0) {
+      printf("%s\n", "Follows several syntactic structures. Basically just `){` but worded.");
+      printf("%s\n", "e.g.");
+      printf("%s\n\n", "If x == y then return x; end");
+      printf("%s\n\n", "Main then return 0; end");
+    } else if(strcmp(token, "constant") == 0) {
+      printf("%s\n", "Declares a constant.");
+      printf("%s\n", "constant(Type, Name, Value)");
+      printf("%s\n", "e.g.");
+      printf("%s\n", "constant(int, pi, 3.14);");
+    } else {
+      printf("%s\n", "Sorry, that option could not be found.");
+    }
   }
 
   void evil_manual(void) {
