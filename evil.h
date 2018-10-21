@@ -133,7 +133,7 @@
   // used with permission.
   // Expanded upon to incorporate const, volatile and const volatile types,
   // as they don't get selected for.
-  #define display_format(x) _Generic((x), \
+  #define display_format(x) _Generic(&*(x), \
     char: "%c", \
     signed char: "%hhd", \
     unsigned char: "%hhu", \
@@ -360,7 +360,7 @@
   // This requires nested functions to be allowed.
   // Only GCC supports it.
   // ... Unconfirmed if Clang does. It might.
-  #if !defined(__GNUC__) || !defined(__clang__)
+  #if defined(__clang__) || !defined(__GNUC__)
     #error "Lambda requires a GNU compiler."
   #endif
   // A cleaner, but slightly more cumbersome lambda:
