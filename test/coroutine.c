@@ -2,9 +2,6 @@
 #define EVIL_COROUTINE
 #include "evil.h"
 
-
-#include <stdlib.h>
-
 int example() {
   static int i = 0;
   coroutine();
@@ -17,9 +14,9 @@ int example() {
 
 int main(int argc, char** argv) {
   if(example() != 1)
-    exit(1);
+    return 1;
   if(example() != 2)
-    exit(1);
+    return 1;
   if(example() != 3)
-    exit(1);
+    return 1;
 }
