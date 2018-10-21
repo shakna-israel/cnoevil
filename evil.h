@@ -540,7 +540,15 @@
     hash += hash << 15;
     return hash;
   }
-
+  uint64_t fletcher64(const uint8_t* key, size_t length) {
+    uint64_t a = 0;
+    uint64_t b = 0;
+    for(size_t i = 0; i < length; i++) {
+      a = (a + key[i]) % 4294967295;
+      b = (b + a) % 4294967295;
+    }
+    return (b << 16) | a;
+  }
   #endif
   uint32_t jenkins32(const uint8_t* key, size_t length) {
     size_t i = 0;
@@ -563,6 +571,24 @@
       sb = (sb + sa) % 65521;
     }
     return (sb << 16) | a;
+  }
+  uint32_t fletcher32(const uint8_t* key, size_t length) {
+    uint32_t a = 0;
+    uint32_t b = 0;
+    for(size_t i = 0; i < length; i++) {
+      a = (a + key[i]) % 65535;
+      b = (b + a) % 65535;
+    }
+    return (b << 16) | a;
+  }
+  uint16_t fletcher16(const uint8_t* key, size_t length) {
+    uint16_t a = 0;
+    uint16_t b = 0;
+    for(size_t i = 0; i < length; i++) {
+      a = (a + key[i]) % 255;
+      b = (b + a) % 255;
+    }
+    return (b << 16) | a;
   }
 #endif
 
