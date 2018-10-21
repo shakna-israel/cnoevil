@@ -81,7 +81,8 @@
     printf("%s\n", "While - A keyword, used to replace C's bracket'd `while`. i.e. Equivalent to `while(`. Exclude by defining `EVIL_NO_FLOW`.");
     printf("%s\n", "Do - A keyword, replaces C's `do`, and opens the block automatically. Exclude by defining `EVIL_NO_FLOW`.");
     printf("%s\n", "Switch(T) - A macro, creates and opens the block of a switch statement. Exclude by defining `EVIL_NO_FLOW`.");
-    printf("%s\n", "contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_CONSTANT`.");
+    printf("%s\n", "contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_SPECIFIER`.");
+    printf("%s\n", "storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "CNOEVIL - A macro that is defined if this library is available.");
     printf("\n%s\n\n", "Available if EVIL_IO defined:");
@@ -321,8 +322,12 @@
 #endif
 
 // constant is an optionally-exluded definition
-#ifndef EVIL_NO_CONSTANT
+#ifndef EVIL_NO_SPECIFIER
   #define constant(_type, _name, _value) const _type _name = _value
+
+  // Static vars are usually referred to as storage-class
+  // specifiers in the C standard.
+  #define storage(_type, _name, _value) static _type _name = _value
 #endif
 
 // Allow users not to use our procedure definition.
