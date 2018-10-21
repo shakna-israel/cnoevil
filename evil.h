@@ -69,6 +69,8 @@
 
   void evil_manual(void) {
     printf("%s\n\n", "CNoEvil - A Language Extension for C");
+    printf("%s\n", "Some definitions can produce warnings. Hide these by defining EVIL_NO_WARN before including `evil.h`.");
+    printf("%s\n", "Some definitions can produce errors. There is no option to hide these.");
     printf("%s\n", "Definitions are expected to be created before the `evil.h` file is included.");
     printf("%s\n%s\n%s\n", "e.g.", "#define EVIL_IO", "#include \"evil.h\"");
     printf("\n%s\n\n", "Available by default:");
@@ -524,11 +526,14 @@
   // TODO: itoa, convenience.
 #endif
 
-// TODO: random module.
-//#ifdef EVIL_RANDOM
-  // TODO: Random seeder
-  // TODO: Mersenne Twister
-//#endif
+#ifdef EVIL_RANDOM
+  #include <stdlib.h>
+  #include <time.h>
+  // Crappy C-standard stuff.
+  #define randomseed() srand(time(NULL))
+  #define random(min, max) (rand() % (max + 1 - min)) + min
+  // TODO: Mersenne Twister (see http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/CODES/mt19937ar.c)
+#endif
 
 #ifdef EVIL_HASH
   #include <stdint.h>
@@ -620,7 +625,6 @@
 //#define EVIL_GC
 //#endif
 
-// TODO: coroutine library
 #ifdef EVIL_COROUTINE
   // This lovely hack makes use of switch statements,
   // And the __LINE__ C macro

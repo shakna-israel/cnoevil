@@ -1,5 +1,7 @@
 CNoEvil - A Language Extension for C
 
+Some definitions can produce warnings. Hide these by defining EVIL_NO_WARN before including `evil.h`.
+Some definitions can produce errors. There is no option to hide these.
 Definitions are expected to be created before the `evil.h` file is included.
 e.g.
 #define EVIL_IO
