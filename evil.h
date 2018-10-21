@@ -360,7 +360,7 @@
   // This requires nested functions to be allowed.
   // Only GCC supports it.
   // ... Unconfirmed if Clang does. It might.
-  #ifndef __GNUC__
+  #if !defined(__GNUC__) || !defined(__clang__)
     #error "Lambda requires a GNU compiler."
   #endif
   // A cleaner, but slightly more cumbersome lambda:
