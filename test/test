@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 # Pre-compile our header.
 gcc ../evil.h
 
