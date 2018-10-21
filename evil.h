@@ -165,11 +165,17 @@
     printf("%s\n", "cli_bg_bright_magenta() - Sets the terminal background to complex magenta.");
     printf("%s\n", "cli_bg_bright_cyan() - Sets the terminal background to complex cyan.");
     printf("%s\n", "cli_bg_bright_white() - Sets the terminal background to complex white.");
+    printf("\n%s\n\n", "Available if EVIL_HASH defined:");
+    printf("%s\n", "jenkins64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Jenkins One-At-A-Time hash.");
+    printf("%s\n", "fletcher64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Fletcher's checksum.");
+    printf("%s\n", "fletcher32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Fletcher's checksum.");
+    printf("%s\n", "jenkins32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Jenkins One-At-A-Time hash.");
+    printf("%s\n", "adler32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Adler-32.");
+    printf("%s\n", "fletcher16(char* key, size_t length) - Hash a given string into a uint16_t. Based on Fletcher's checksum.");
     printf("\n%s\n\n", "EVIL_MATH module under heavy development.");
     printf("\n%s\n\n", "EVIL_ARGPARSE module under heavy development.");
     printf("\n%s\n\n", "EVIL_INT module under heavy development.");
     printf("\n%s\n\n", "EVIL_RANDOM module under heavy development.");
-    printf("\n%s\n\n", "EVIL_HASH module under heavy development.");
     printf("\n%s\n\n", "EVIL_LIST module under heavy development.");
     printf("\n%s\n\n", "EVIL_SORT module under heavy development.");
     printf("\n%s\n\n", "EVIL_GC module under heavy development.");
