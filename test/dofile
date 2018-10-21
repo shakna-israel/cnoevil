@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 echo "Testing: $1"
-gcc -std=c11 -Wall -Wpedantic -Werror -Wno-unused -g -I.. "$1" -o $(basename "$1" .c)
+"$CC" -std=c11 -Wall -Wpedantic -Werror -Wno-unused -g -I.. "$1" -o $(basename "$1" .c)
 ./$(basename "$1" .c)
 # If any of the above exits non-zero, we crash before here.
 echo "Pass: $1"
