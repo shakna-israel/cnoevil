@@ -9,7 +9,7 @@
 proc(example, int)
   static int i = 0;
   coroutine();
-  While 1 then
+  While true then
     co_return(++i);
   end
   co_end();

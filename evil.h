@@ -301,6 +301,10 @@
   #define Main int main(int argc, char** argv
 #endif
 
+#ifndef EVIL_NO_BOOL
+  #include <stdbool.h>
+#endif
+
 // Allow users to not use CNOEvil's decision
 // macros.
 #ifndef EVIL_NO_FLOW
