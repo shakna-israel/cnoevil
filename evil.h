@@ -72,6 +72,7 @@
     printf("%s\n", "Definitions are expected to be created before the `evil.h` file is included.");
     printf("%s\n%s\n%s\n", "e.g.", "#define EVIL_IO", "#include \"evil.h\"");
     printf("\n%s\n\n", "Available by default:");
+    printf("%s\n", "The equivalent of including stdbool.h. Exclude by defining EVIL_NO_BOOL.");
     printf("%s\n", "Main - A keyword, expected to be followed by keyword `then`. Automatically makes argc and argv available. Use instead of the `main` function. Exclude by defining `EVIL_NO_MAIN`.");
     printf("%s\n", "then - A keyword, used to follow some constructs (such as If, While, etc.) Exclude by defining `EVIL_NO_FLOW`.");
     printf("%s\n", "end - A keyword, used to close functions, and some other constructs. Exclude by defining `EVIL_NO_FLOW`.");
