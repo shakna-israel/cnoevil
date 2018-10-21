@@ -540,6 +540,7 @@
     hash += hash << 15;
     return hash;
   }
+
   #endif
   uint32_t jenkins32(const uint8_t* key, size_t length) {
     size_t i = 0;
@@ -553,6 +554,15 @@
     hash ^= hash >> 11;
     hash += hash << 15;
     return hash;
+  }
+  uint32_t adler32(const uint8_t* key, size_t length) {
+    uint32_t sa = 1;
+    uint32_t sb = 0;
+    for(size_t i = 0; i < length; i++) {
+      sa = (sa + key[i]) % 65521;
+      sb = (sb + sa) % 65521;
+    }
+    return (sb << 16) | a;
   }
 #endif
 
