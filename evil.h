@@ -133,7 +133,7 @@
   // used with permission.
   // Expanded upon to incorporate const, volatile and const volatile types,
   // as they don't get selected for.
-  #define display_format(x) _Generic(&*(x), \
+  #define display_format(x) _Generic((0,x), \
     char: "%c", \
     signed char: "%hhd", \
     unsigned char: "%hhu", \
@@ -468,10 +468,37 @@
   // TODO: Mersenne Twister
 //#endif
 
-// TODO: hash module.
-//#ifdef EVIL_HASH
-  //TODO: jensen one-at-a-time
-//#endif
+#ifdef EVIL_HASH
+  #include <stdint.h>
+  #ifdef INT64_MAX
+  uint64_t jenkins64(const uint8_t* key, size_t length) {
+    size_t i = 0;
+    uint64_t hash = 0;
+    while(i != length) {
+      hash += key[i++];
+      hash += hash << 10;
+      hash += hash >> 6;
+    }
+    hash += hash << 3;
+    hash ^= hash >> 11;
+    hash += hash << 15;
+    return hash;
+  }
+  #endif
+  uint32_t jenkins32(const uint8_t* key, size_t length) {
+    size_t i = 0;
+    uint32_t hash = 0;
+    while(i != length) {
+      hash += key[i++];
+      hash += hash << 10;
+      hash += hash >> 6;
+    }
+    hash += hash << 3;
+    hash ^= hash >> 11;
+    hash += hash << 15;
+    return hash;
+  }
+#endif
 
 // TODO: list module.
 //#ifdef EVIL_LIST
