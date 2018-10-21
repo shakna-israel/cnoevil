@@ -1,0 +1,143 @@
+CNoEvil - A Language Extension for C
+
+Definitions are expected to be created before the `evil.h` file is included.
+e.g.
+#define EVIL_IO
+#include "evil.h"
+
+Available by default:
+
+The equivalent of including stdbool.h. Exclude by defining EVIL_NO_BOOL.
+Main - A keyword, expected to be followed by keyword `then`. Automatically makes argc and argv available. Use instead of the `main` function. Exclude by defining `EVIL_NO_MAIN`.
+then - A keyword, used to follow some constructs (such as If, While, etc.) Exclude by defining `EVIL_NO_FLOW`.
+end - A keyword, used to close functions, and some other constructs. Exclude by defining `EVIL_NO_FLOW`.
+If - A keyword, used to replace C's bracket'd `if`. i.e. Equivalent to `if(`. Exclude by defining `EVIL_NO_FLOW`.
+For - A keyword, used to replace C's bracket'd `for`. i.e. Equivalent to `for(`. Exclude by defining `EVIL_NO_FLOW`.
+While - A keyword, used to replace C's bracket'd `while`. i.e. Equivalent to `while(`. Exclude by defining `EVIL_NO_FLOW`.
+Do - A keyword, replaces C's `do`, and opens the block automatically. Exclude by defining `EVIL_NO_FLOW`.
+Switch(T) - A macro, creates and opens the block of a switch statement. Exclude by defining `EVIL_NO_FLOW`.
+contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_SPECIFIER`.
+storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.
+proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.
+CNOEVIL - A macro that is defined if this library is available.
+
+Available if EVIL_IO defined:
+
+The equivalent of including stdio.h
+display(T) - Prints a representation of the given value to stdout.
+displayf(F, T) - Prints a representation of the given value to F, a `FILE*`.
+displayln(T) - Prints a representation of the given value to stdout, followed by a system-compatible line ending.
+displayfln(F, T) - Prints a representation of the given value to F, a `FILE*`, followed by a system-compatible line ending.
+endl - A keyword. Prints a system-comaptible line ending to stdout.
+endlf(F) - Prints a system-comaptible line ending to F, a `FILE*`.
+repr_type(T) - Returns a `char*` containing a text representation of the type. Optimisation may effect results. Returns "Unknown" for any type that cannot be accounted for.
+
+Available if EVIL_STRUCT defined:
+
+Struct(Name) - Starts a struct definition.
+Union(Name) - Start a union definition.
+Typedef - A keyword, exactly equivalent to `typedef`.
+BitField(Name, Type, Width) - Used for defining a Bitfield inside a struct.
+
+Available if EVIL_COROUTINE defined:
+
+coroutine() - A macro that marks the beginning of a coroutine body.
+co_return(T) - A macro that marks a return from a coroutine.
+co_end() - A macro that closes a coroutine body.
+
+Available if EVIL_HELP defined:
+
+evil_manual() - Prints this.
+evil_explain(char*) - Prints further information on a single item. (Under heavy development.)
+
+Available if EVIL_LAMBDA defined:
+
+lambda(Type, Body) - A simple macro to construct an anonymous function-like object
+
+Available if EVIL_CLI defined:
+
+
+Note: None of the module's functions check if function supported by current terminal.
+
+cli_reset() - Removes any active effects and colors from the terminal.
+cli_fg_256(N) - Takes a number between 0-255, and applies the corresponding color to the terminal text.
+cli_bg_256(N) - Takes a number between 0-255, and applies the corresponding color to the terminal background.
+cli_fg_rgb(R,G,B) - Takes three values (Red, Green, Blue), and applies the corresponding truecolor to the terminal text.
+cli_bg_rgb(R,G,B) - Takes three values (Red, Green, Blue), and applies the corresponding truecolor to the terminal background.
+cli_cursor_up(N) - Moves the console cursor up N lines.
+cli_cursor_down(N) - Moves the console cursor down N lines.
+cli_cursor_right(N) - Moves the console cursor right N characters.
+cli_cursor_left(N) - Moves the console cursor left N characters.
+cli_cursor_save() - Saves the current cursor position.
+cli_cursor_restore() - Moves the cursor to the last saved position.
+cli_screen_clear() - Clears the current terminal screen.
+cli_screen_clear_before() - Clears the current terminal screen, before the cursor.
+cli_screen_clear_after() - Clears the current terminal screen, after the cursor.
+cli_line_clear() - Clears the current terminal line.
+cli_line_clear_before() - Clears the current terminal line, before the cursor.
+cli_line_clear_after() - Clears the current terminal line, after the cursor.
+cli_effect_reset() - Removes any active effects from the terminal.
+cli_effect_bold() - Activates the bold text terminal effect.
+cli_effect_underline() - Activates the underlined text terminal effect.
+cli_effect_reverse() - Activates the reversed text terminal effect.
+cli_effect_blink() - Activates the blinking text terminal effect.
+cli_effect_invisible() - Activates the invisible text terminal effect.
+cli_fg_black() - Sets the terminal text to simple black.
+cli_fg_red() - Sets the terminal text to simple red.
+cli_fg_green() - Sets the terminal text to simple green.
+cli_fg_yellow() - Sets the terminal text to simple yellow.
+cli_fg_blue() - Sets the terminal text to simple blue.
+cli_fg_magenta() - Sets the terminal text to simple magenta.
+cli_fg_cyan() - Sets the terminal text to simple cyan.
+cli_fg_white() - Sets the terminal text to simple white.
+cli_fg_bright_black() - Sets the terminal text to complex black.
+cli_fg_bright_red() - Sets the terminal text to complex red.
+cli_fg_bright_green() - Sets the terminal text to complex green.
+cli_fg_bright_yellow() - Sets the terminal text to complex yellow.
+cli_fg_bright_blue() - Sets the terminal text to complex blue.
+cli_fg_bright_magenta() - Sets the terminal text to complex magenta.
+cli_fg_bright_cyan() - Sets the terminal text to complex cyan.
+cli_fg_bright_white() - Sets the terminal text to complex white.
+cli_bg_black() - Sets the terminal background to simple black.
+cli_bg_red() - Sets the terminal background to simple red.
+cli_bg_green() - Sets the terminal background to simple green.
+cli_bg_yellow() - Sets the terminal background to simple yellow.
+cli_bg_blue() - Sets the terminal background to simple blue.
+cli_bg_magenta() - Sets the terminal background to simple magenta.
+cli_bg_cyan() - Sets the terminal background to simple cyan.
+cli_bg_white() - Sets the terminal background to simple white.
+cli_bg_bright_black() - Sets the terminal background to complex black.
+cli_bg_bright_red() - Sets the terminal background to complex red.
+cli_bg_bright_green() - Sets the terminal background to complex green.
+cli_bg_bright_yellow() - Sets the terminal background to complex yellow.
+cli_bg_bright_blue() - Sets the terminal background to complex blue.
+cli_bg_bright_magenta() - Sets the terminal background to complex magenta.
+cli_bg_bright_cyan() - Sets the terminal background to complex cyan.
+cli_bg_bright_white() - Sets the terminal background to complex white.
+
+EVIL_MATH module under heavy development.
+
+
+EVIL_ARGPARSE module under heavy development.
+
+
+EVIL_INT module under heavy development.
+
+
+EVIL_RANDOM module under heavy development.
+
+
+EVIL_HASH module under heavy development.
+
+
+EVIL_LIST module under heavy development.
+
+
+EVIL_SORT module under heavy development.
+
+
+EVIL_GC module under heavy development.
+
+
+EVIL_LOG module under heavy development.
+
