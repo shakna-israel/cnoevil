@@ -278,7 +278,7 @@
   #endif
 
   // Basically a _Generic.
-  #define repr_type(x) _Generic((x), \
+  #define repr_type(x) _Generic((0,x), \
     char: "char", \
     signed char: "signed char", \
     unsigned char: "unsigned char", \
