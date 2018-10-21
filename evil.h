@@ -56,6 +56,12 @@
       printf("%s\n", "constant(Type, Name, Value)");
       printf("%s\n", "e.g.");
       printf("%s\n", "constant(int, pi, 3.14);");
+    } else if(strcmp(token, "lambda") == 0) {
+      printf("%s\n", "This macro allows you to generate function-like objects. You will need to know the signature, before you can pass it to another function, however.");
+      printf("%s\n", "e.g.");
+      printf("%s\n", "int (*max)(int, int) = lambda (int, (int x, int y) { return x > y ? x : y; });");
+      printf("%s\n", "max(10, 20);");
+      printf("\n%s\n\n", "int something(int (*x)(int, int), int y, int z) { return x(y, z); }");
     } else {
       printf("%s\n", "Sorry, that option could not be found.");
     }
@@ -98,8 +104,9 @@
     printf("\n%s\n\n", "Available if EVIL_HELP defined:");
     printf("%s\n", "evil_manual() - Prints this.");
     printf("%s\n", "evil_explain(char*) - Prints further information on a single item. (Under heavy development.)");
+    printf("\n%s\n\n", "Available if EVIL_LAMBDA defined:");
+    printf("%s\n", "lambda(Type, Body) - A simple macro to construct an anonymous function-like object");
     printf("\n%s\n\n", "EVIL_MATH module under heavy development.");
-    printf("\n%s\n\n", "EVIL_LAMBDA module under heavy development.");
     printf("\n%s\n\n", "EVIL_CLI module under heavy development.");
     printf("\n%s\n\n", "EVIL_ARGPARSE module under heavy development.");
     printf("\n%s\n\n", "EVIL_INT module under heavy development.");
@@ -346,17 +353,9 @@
   #ifndef __GNUC__
     #error "Lambda requires a GNU compiler."
   #endif
-  // The hack combines void pointers, nested functions, and block-scoping.
-  // But you end up with a pointer `_name`, and it can take arguments.
-  // TODO: Unfortunately, to be able to call it after passing to another function,
-  // we need to be able to get the signature.
-  // Maybe a typedef should be inserted here, too?
-  #define lambda(_name, ...) void (*_name)(__VA_ARGS__) = ({void _(__VA_ARGS__) {
-  #define endlambda } (void (*)())_;})
-
   // A cleaner, but slightly more cumbersome lambda:
-  // #define lambda(ret_type, _body) ({ ret_type _ _body _; })
-  // int (*max)(int, int) = lambda (int, (int x, int y) { return x > y ? x : y; });
+  #define lambda(ret_type, _body) ({ ret_type _ _body _; })
+  // e.g. int (*max)(int, int) = lambda (int, (int x, int y) { return x > y ? x : y; });
   // Pros:
   // * Woot, easier to pass, as the user has to know the signature anyway.
   // * Name not part of lambda definition. More lambda-y.
@@ -495,8 +494,9 @@
   // Which would be hard to debug.
   #ifdef EVIL_LAMBDA
     // And bad things happen with expression statements.
-    #warning "Lambda's don't play well with Coroutines."
+    #warning "Lambda's don't play well with Coroutines. Avoid using them in the body of a coroutine."
   #endif
+  #warning "Coroutine's don't support nesting. It may work sometimes, other times it may explode."
 
   // Original macro hack by Robert Elder (c) 2016. Used against their advice, but with their permission.
   #define coroutine() static int state=0; switch(state) { case 0:
