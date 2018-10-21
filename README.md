@@ -2,6 +2,8 @@
 
 ---
 
+Master: [![Build Status](https://travis-ci.org/shakna-israel/cnoevil.svg?branch=master)](https://travis-ci.org/shakna-israel/cnoevil)
+
 This is a pet project of mine, abusing the hell out of the C pre-processor, and other C language features, to create a language that is still technically C, but looks and behaves differently, whilst remaining fully compatible with C.
 
 It takes a whole lot of bad ideas and mashes them into an abhorrent monstrosity.
