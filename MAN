@@ -115,6 +115,15 @@ cli_bg_bright_magenta() - Sets the terminal background to complex magenta.
 cli_bg_bright_cyan() - Sets the terminal background to complex cyan.
 cli_bg_bright_white() - Sets the terminal background to complex white.
 
+Available if EVIL_HASH defined:
+
+jenkins64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Jenkins One-At-A-Time hash.
+fletcher64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Fletcher's checksum.
+fletcher32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Fletcher's checksum.
+jenkins32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Jenkins One-At-A-Time hash.
+adler32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Adler-32.
+fletcher16(char* key, size_t length) - Hash a given string into a uint16_t. Based on Fletcher's checksum.
+
 EVIL_MATH module under heavy development.
 
 
@@ -125,9 +134,6 @@ EVIL_INT module under heavy development.
 
 
 EVIL_RANDOM module under heavy development.
-
-
-EVIL_HASH module under heavy development.
 
 
 EVIL_LIST module under heavy development.
