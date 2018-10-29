@@ -646,6 +646,51 @@
 #endif
 
 // TODO: Logging module
+#ifdef EVIL_LOG
+
+  // File definitions for the user to control.
+  char* message_file = "";
+  char* warning_file = "";
+  char* critical_file = "";
+  char* error_file = "";
+  char* info_file = "";
+  char* debug_file = "";
+  char* log_file = "";
+
+  // Libraries we need
+  #include <stdio.h>
+  #include <time.h>
+  #include <assert.h>
+
+  void message(char* str) {
+    time_t now;
+    struct tm* timeinfo;
+    time(&now);
+    timeinfo = localtime(&now);
+
+    if(log_file[0] != '\0') {
+      // Opening in append mode is Not ANSI C, but ISO C
+      FILE* logFile = fopen(log_file, "a");
+      assert(logFile != NULL);
+      fprintf(logFile, "%s\n%u %s%s\n%s\n", "---MESSAGE---", (unsigned)time(NULL), asctime(timeinfo), str, "---END MESSAGE---");
+      fclose(logFile);
+    }
+    if(message_file[0] != '\0') {
+      // Opening in append mode is Not ANSI C, but ISO C
+      FILE* messageFile = fopen(message_file, "a");
+      assert(messageFile != NULL);
+      fprintf(messageFile, "%s\n%u %s%s\n%s\n", "---MESSAGE---", (unsigned)time(NULL), asctime(timeinfo), str, "---END MESSAGE---");
+      fclose(messageFile);
+    }
+    //NOTE: asctime has a newline.
+    printf("%s\n%u %s%s\n%s\n", "---MESSAGE---", (unsigned)time(NULL), asctime(timeinfo), str, "---END MESSAGE---");
+  }
+  //TODO: warning
+  //TODO: critical
+  //TODO: error
+  //TODO: info
+  //TODO: debug
+#endif
 
 #define CNOEVIL
 #endif
