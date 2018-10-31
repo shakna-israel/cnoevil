@@ -42,6 +42,7 @@
   void evil_explain(char* token);
 
   #include <string.h>
+  //TODO
   void evil_explain(char* token) {
     if(strcmp(token, "Main") == 0) {
       printf("%s\n", "This implements the beginning of a main function, and provides argc and argv. It expects that `then` will follow it.");
@@ -73,6 +74,7 @@
     printf("%s\n", "Some definitions can produce errors. There is no option to hide these.");
     printf("%s\n", "Definitions are expected to be created before the `evil.h` file is included.");
     printf("%s\n%s\n%s\n", "e.g.", "#define EVIL_IO", "#include \"evil.h\"");
+
     printf("\n%s\n\n", "Available by default:");
     printf("%s\n", "The equivalent of including stdbool.h. Exclude by defining EVIL_NO_BOOL.");
     printf("%s\n", "Main - A keyword, expected to be followed by keyword `then`. Automatically makes argc and argv available. Use instead of the `main` function. Exclude by defining `EVIL_NO_MAIN`.");
@@ -87,6 +89,7 @@
     printf("%s\n", "storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "CNOEVIL - A macro that is defined if this library is available.");
+
     printf("\n%s\n\n", "Available if EVIL_IO defined:");
     printf("%s\n", "The equivalent of including stdio.h");
     printf("%s\n", "display(T) - Prints a representation of the given value to stdout.");
@@ -96,20 +99,25 @@
     printf("%s\n", "endl - A keyword. Prints a system-comaptible line ending to stdout.");
     printf("%s\n", "endlf(F) - Prints a system-comaptible line ending to F, a `FILE*`.");
     printf("%s\n", "repr_type(T) - Returns a `char*` containing a text representation of the type. Optimisation may effect results. Returns \"Unknown\" for any type that cannot be accounted for.");
+
     printf("\n%s\n\n", "Available if EVIL_STRUCT defined:");
     printf("%s\n", "Struct(Name) - Starts a struct definition.");
     printf("%s\n", "Union(Name) - Start a union definition.");
     printf("%s\n", "Typedef - A keyword, exactly equivalent to `typedef`.");
     printf("%s\n", "BitField(Name, Type, Width) - Used for defining a Bitfield inside a struct.");
+
     printf("\n%s\n\n", "Available if EVIL_COROUTINE defined:");
     printf("%s\n", "coroutine() - A macro that marks the beginning of a coroutine body.");
     printf("%s\n", "co_return(T) - A macro that marks a return from a coroutine.");
     printf("%s\n", "co_end() - A macro that closes a coroutine body.");
+
     printf("\n%s\n\n", "Available if EVIL_HELP defined:");
     printf("%s\n", "evil_manual() - Prints this.");
     printf("%s\n", "evil_explain(char*) - Prints further information on a single item. (Under heavy development.)");
+
     printf("\n%s\n\n", "Available if EVIL_LAMBDA defined:");
     printf("%s\n", "lambda(Type, Body) - A simple macro to construct an anonymous function-like object");
+
     printf("\n%s\n\n", "Available if EVIL_CLI defined:");
     printf("\n%s\n\n", "Note: None of the module's functions check if function supported by current terminal.");
     printf("%s\n", "cli_reset() - Removes any active effects and colors from the terminal.");
@@ -167,6 +175,7 @@
     printf("%s\n", "cli_bg_bright_magenta() - Sets the terminal background to complex magenta.");
     printf("%s\n", "cli_bg_bright_cyan() - Sets the terminal background to complex cyan.");
     printf("%s\n", "cli_bg_bright_white() - Sets the terminal background to complex white.");
+
     printf("\n%s\n\n", "Available if EVIL_HASH defined:");
     printf("%s\n", "jenkins64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Jenkins One-At-A-Time hash.");
     printf("%s\n", "fletcher64(char* key, size_t length) - Hash a given string into a uint64_t. Only defined if 64bit numbers are supported. Based on Fletcher's checksum.");
@@ -174,6 +183,16 @@
     printf("%s\n", "jenkins32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Jenkins One-At-A-Time hash.");
     printf("%s\n", "adler32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Adler-32.");
     printf("%s\n", "fletcher16(char* key, size_t length) - Hash a given string into a uint16_t. Based on Fletcher's checksum.");
+
+    printf("\n%s\n\n", "Available if EVIL_LOG defined:");
+    printf("%s\n", "message(char* ) - Logs a message to stdout. If (char*)message_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "warning(char* ) - Logs a message to stdout. If (char*)warning_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "critical(char* ) - Logs a message to stderr. If (char*)critical_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "error(char* ) - Logs a message to stderr. If (char*)error_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "info(char* ) - Logs a message to stdout. If (char*)info_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "debug(char* ) - If DEBUG defined, logs a message to stdout. If (char*)debug_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.");
+    printf("%s\n", "debug(char* ) - If DEBUG not defined, doesn't do anything.");
+
     printf("\n%s\n\n", "EVIL_MATH module under heavy development.");
     printf("\n%s\n\n", "EVIL_ARGPARSE module under heavy development.");
     printf("\n%s\n\n", "EVIL_INT module under heavy development.");
@@ -181,7 +200,6 @@
     printf("\n%s\n\n", "EVIL_LIST module under heavy development.");
     printf("\n%s\n\n", "EVIL_SORT module under heavy development.");
     printf("\n%s\n\n", "EVIL_GC module under heavy development.");
-    printf("\n%s\n\n", "EVIL_LOG module under heavy development.");
   }
 #endif
 
@@ -685,11 +703,125 @@
     //NOTE: asctime has a newline.
     printf("%s\n%u %s%s\n%s\n", "---MESSAGE---", (unsigned)time(NULL), asctime(timeinfo), str, "---END MESSAGE---");
   }
-  //TODO: warning
-  //TODO: critical
-  //TODO: error
-  //TODO: info
-  //TODO: debug
+
+  void warning(char* str) {
+    time_t now;
+    struct tm* timeinfo;
+    time(&now);
+    timeinfo = localtime(&now);
+
+    if(log_file[0] != '\0') {
+    	FILE* logFile = fopen(log_file, "a");
+    	assert(logFile != NULL);
+    	fprintf(logFile, "%s\n%u %s%s\n%s\n", "---WARNING---", (unsigned)time(NULL), asctime(timeinfo), str, "---END WARNING---");
+    	fclose(logFile);
+    }
+
+    if(warning_file[0] != '\0') {
+      //NOTE: asctime has a newline.
+      FILE* warningFile = fopen(warning_file, "a");
+      assert(warningFile);
+      fprintf(warningFile, "\x1b[30m%s\n%u %s%s\n%s\n\x1b[0m", "---WARNING---", (unsigned)time(NULL), asctime(timeinfo), str, "---END WARNING---");
+      fclose(warningFile);
+    }  	
+    printf("\x1b[30m%s\n%u %s%s\n%s\n\x1b[0m", "---WARNING---", (unsigned)time(NULL), asctime(timeinfo), str, "---END WARNING---");
+  }
+
+  void critical(char* str) {
+    time_t now;
+    struct tm* timeinfo;
+    time(&now);
+    timeinfo = localtime(&now);
+
+    if(log_file[0] != '\0') {
+    	FILE* logFile = fopen(log_file, "a");
+    	assert(logFile != NULL);
+    	fprintf(logFile, "%s\n%u %s%s\n%s\n", "---CRITICAL---", (unsigned)time(NULL), asctime(timeinfo), str, "---END CRITICAL---");
+    	fclose(logFile);
+    }
+
+    if(critical_file[0] != '\0') {
+      //NOTE: asctime has a newline.
+      FILE* criticalFile = fopen(critical_file, "a");
+      assert(criticalFile);
+      fprintf(criticalFile, "%s\n%u %s%s\n%s\n", "---CRITICAL---", (unsigned)time(NULL), asctime(timeinfo), str, "---END CRITICAL---");
+      fclose(criticalFile);
+    }
+    fprintf(stderr, "\x1b[5m\x1b[33m%s\n%u %s%s\n%s\n\x1b[0m", "---CRITICAL---", (unsigned)time(NULL), asctime(timeinfo), str, "---END CRITICAL---");
+  }
+
+  void error(char* str) {
+    time_t now;
+    struct tm* timeinfo;
+    time(&now);
+    timeinfo = localtime(&now);
+
+    if(log_file[0] != '\0') {
+    	FILE* logFile = fopen(log_file, "a");
+    	assert(logFile != NULL);
+    	fprintf(logFile, "%s\n%u %s%s\n%s\n", "---ERROR---", (unsigned)time(NULL), asctime(timeinfo), str, "---END ERROR---");
+    	fclose(logFile);
+    }
+
+    if(error_file[0] != '\0') {
+      //NOTE: asctime has a newline.
+      FILE* errorFile = fopen(error_file, "a");
+      assert(errorFile);
+      fprintf(errorFile, "%s\n%u %s%s\n%s\n", "---ERROR---", (unsigned)time(NULL), asctime(timeinfo), str, "---END ERROR---");
+      fclose(errorFile);
+    }
+    fprintf(stderr, "\x1b[35m%s\n%u %s%s\n%s\n\x1b[0m", "---ERROR---", (unsigned)time(NULL), asctime(timeinfo), str, "---END ERROR---");
+  }
+
+  void info(char* str) {
+    time_t now;
+    struct tm* timeinfo;
+    time(&now);
+    timeinfo = localtime(&now);
+
+    if(log_file[0] != '\0') {
+    	FILE* logFile = fopen(log_file, "a");
+    	assert(logFile != NULL);
+    	fprintf(logFile, "%s\n%u %s%s\n%s\n", "---INFO---", (unsigned)time(NULL), asctime(timeinfo), str, "---END INFO---");
+    	fclose(logFile);
+    }
+
+    if(info_file[0] != '\0') {
+      //NOTE: asctime has a newline.
+      FILE* infoFile = fopen(info_file, "a");
+      assert(infoFile);
+      fprintf(infoFile, "%s\n%u %s%s\n%s\n", "---INFO---", (unsigned)time(NULL), asctime(timeinfo), str, "---END INFO---");
+      fclose(infoFile);
+    }
+    printf("%s\n%u %s%s\n%s\n", "---INFO---", (unsigned)time(NULL), asctime(timeinfo), str, "---END INFO---");
+  }
+
+  #ifdef DEBUG_LOG
+    void debug(char* str) {
+	    time_t now;
+	    struct tm* timeinfo;
+	    time(&now);
+	    timeinfo = localtime(&now);
+
+	    if(log_file[0] != '\0') {
+	    	FILE* logFile = fopen(log_file, "a");
+	    	assert(logFile != NULL);
+	    	fprintf(logFile, "%s\n%u %s%s\n%s\n", "---DEBUG---", (unsigned)time(NULL), asctime(timeinfo), str, "---END DEBUG---");
+	    	fclose(logFile);
+	    }
+
+	    if(debug_file[0] != '\0') {
+	      //NOTE: asctime has a newline.
+	      FILE* debugFile = fopen(debug_file, "a");
+	      assert(debugFile);
+	      fprintf(debugFile, "%s\n%u %s%s\n%s\n", "---DEBUG---", (unsigned)time(NULL), asctime(timeinfo), str, "---END DEBUG---");
+	      fclose(debugFile);
+	    }
+	    printf("%s\n%u %s%s\n%s\n", "---DEBUG---", (unsigned)time(NULL), asctime(timeinfo), str, "---END DEBUG---");
+	  }
+  #else
+    void debug(char* str) {return; }
+  #endif
 #endif
 
 #define CNOEVIL
