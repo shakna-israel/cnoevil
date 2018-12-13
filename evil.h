@@ -1,5 +1,5 @@
 #ifndef CNOEVIL
-#define CNOEVIL "1.1.0"
+#define CNOEVIL "1.2.0"
 
 // Programmer's Notes
 //
@@ -96,6 +96,9 @@
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "comment(...) - A variadic macro. Arguments can be anything. Creates a multiline comment. Exclude by definine `EVIL_NO_COMMENT`.");
     printf("%s\n", "CNOEVIL - A macro that is defined if this library is available. It is a char* containing a version number.");
+
+    printf("\n%s\n\n", "Available if EVIL_MALLOC defined:");
+    printf("%s\n", "checked_malloc(VARIABLE, VARIABLE_TYPE, BUFFER_SIZE, FAIL_MSG, EXIT?) - A macro to perform the normal malloc check for success. If exit is considered true by C, then the failure will cause an exit. It will always print FAIL_MSG to stderr, if allocation fails.");
 
     printf("\n%s\n\n", "Available if EVIL_IO defined:");
     printf("%s\n", "The equivalent of including stdio.h");
@@ -208,6 +211,14 @@
     printf("\n%s\n\n", "EVIL_SORT module under heavy development.");
     printf("\n%s\n\n", "EVIL_GC module under heavy development.");
   }
+#endif
+
+// A safe malloc pattern
+// Would be by default, but stdlib is huge.
+#ifdef EVIL_MALLOC
+  #include <stdlib.h>
+  #include <stdio.h>
+  #define checked_malloc(object, object_type, buffer, fail_msg, exit_q) object_type object = malloc(buffer); if(!object){fprintf(stderr, "%s\n", fail_msg);} if(exit_q){exit(EXIT_FAILURE);}
 #endif
 
 // The IO Module.
