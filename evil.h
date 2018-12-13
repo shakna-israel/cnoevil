@@ -663,7 +663,6 @@
   #define co_end() }
 #endif
 
-// TODO: Logging module
 #ifdef EVIL_LOG
 
   // File definitions for the user to control.
