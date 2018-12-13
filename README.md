@@ -2,7 +2,7 @@
 
 ---
 
-Master: [![Build Status](https://travis-ci.org/shakna-israel/cnoevil.svg?branch=master)](https://travis-ci.org/shakna-israel/cnoevil)
+Master: [![Build Status](https://travis-ci.org/shakna-israel/cnoevil.svg?branch=master)](https://travis-ci.org/shakna-israel/cnoevil) [![builds.sr.ht status](https://builds.sr.ht/~shakna/cnoevil/.build.yml.svg)](https://builds.sr.ht/~shakna/cnoevil/.build.yml?)
 
 This is a pet project of mine, abusing the hell out of the C pre-processor, and other C language features, to create a language that is still technically C, but looks and behaves differently, whilst remaining fully compatible with C.
 
