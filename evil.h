@@ -567,7 +567,7 @@
   #include <stdint.h>
   #include <stddef.h>
   #ifdef INT64_MAX
-  uint64_t jenkins64(uint8_t* key, size_t length) {
+  uint64_t jenkins64(char* key, size_t length) {
     size_t i = 0;
     uint64_t hash = 0;
     while(i != length) {
@@ -580,7 +580,7 @@
     hash += hash << 15;
     return hash;
   }
-  uint64_t fletcher64(uint8_t* key, size_t length) {
+  uint64_t fletcher64(char* key, size_t length) {
     uint64_t a = 0;
     uint64_t b = 0;
     for(size_t i = 0; i < length; i++) {
@@ -590,7 +590,7 @@
     return (b << 16) | a;
   }
   #endif
-  uint32_t jenkins32(uint8_t* key, size_t length) {
+  uint32_t jenkins32(char* key, size_t length) {
     size_t i = 0;
     uint32_t hash = 0;
     while(i != length) {
@@ -603,7 +603,7 @@
     hash += hash << 15;
     return hash;
   }
-  uint32_t adler32(uint8_t* key, size_t length) {
+  uint32_t adler32(char* key, size_t length) {
     uint32_t sa = 1;
     uint32_t sb = 0;
     for(size_t i = 0; i < length; i++) {
@@ -612,7 +612,7 @@
     }
     return (sb << 16) | sa;
   }
-  uint32_t fletcher32(uint8_t* key, size_t length) {
+  uint32_t fletcher32(char* key, size_t length) {
     uint32_t a = 0;
     uint32_t b = 0;
     for(size_t i = 0; i < length; i++) {
@@ -621,7 +621,7 @@
     }
     return (b << 16) | a;
   }
-  uint16_t fletcher16(uint8_t* key, size_t length) {
+  uint16_t fletcher16(char* key, size_t length) {
     uint16_t a = 0;
     uint16_t b = 0;
     for(size_t i = 0; i < length; i++) {
