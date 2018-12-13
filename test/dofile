@@ -5,7 +5,7 @@ set -o pipefail
 #set -x
 
 echo "Testing: $1"
-"$CC" -std=gnu11 -Wall -Werror -Wno-unused -g -I.. "$1" -o $(basename "$1" .c)
+gcc -std=gnu11 -Wall -Werror -Wno-unused -g -I.. "$1" -o $(basename "$1" .c)
 if [ $? -ne 0 ]; then
   echo "Fail, nocompile: $1"
 fi
