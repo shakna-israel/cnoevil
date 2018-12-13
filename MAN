@@ -1,4 +1,4 @@
-CNoEvil - A Language Extension for C
+CNoEvil 1.0.0 - A Language Extension for C
 
 Some definitions can produce warnings. Hide these by defining EVIL_NO_WARN before including `evil.h`.
 Some definitions can produce errors. There is no option to hide these.
@@ -21,7 +21,8 @@ Switch(T) - A macro, creates and opens the block of a switch statement. Exclude 
 contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_SPECIFIER`.
 storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.
 proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.
-CNOEVIL - A macro that is defined if this library is available.
+comment(...) - A variadic macro. Arguments can be anything. Creates a multiline comment. Exclude by definine `EVIL_NO_COMMENT`.
+CNOEVIL - A macro that is defined if this library is available. It is a char* containing a version number.
 
 Available if EVIL_IO defined:
 
@@ -126,6 +127,16 @@ jenkins32(char* key, size_t length) - Hash a given string into a uint32_t. Based
 adler32(char* key, size_t length) - Hash a given string into a uint32_t. Based on Adler-32.
 fletcher16(char* key, size_t length) - Hash a given string into a uint16_t. Based on Fletcher's checksum.
 
+Available if EVIL_LOG defined:
+
+message(char* ) - Logs a message to stdout. If (char*)message_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+warning(char* ) - Logs a message to stdout. If (char*)warning_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+critical(char* ) - Logs a message to stderr. If (char*)critical_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+error(char* ) - Logs a message to stderr. If (char*)error_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+info(char* ) - Logs a message to stdout. If (char*)info_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+debug(char* ) - If DEBUG defined, logs a message to stdout. If (char*)debug_file has a length > 0, then logs to that file in append mode. If (char*)log_file has a length > 0, then logs to that file in append mode.
+debug(char* ) - If DEBUG not defined, doesn't do anything.
+
 EVIL_MATH module under heavy development.
 
 
@@ -145,7 +156,4 @@ EVIL_SORT module under heavy development.
 
 
 EVIL_GC module under heavy development.
-
-
-EVIL_LOG module under heavy development.
 

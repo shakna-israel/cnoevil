@@ -1,4 +1,5 @@
 #ifndef CNOEVIL
+#define CNOEVIL "1.0.0"
 
 // Programmer's Notes
 //
@@ -73,7 +74,7 @@
   }
 
   void evil_manual(void) {
-    printf("%s\n\n", "CNoEvil - A Language Extension for C");
+    printf("%s%s%s\n\n", "CNoEvil ", CNOEVIL, " - A Language Extension for C");
     printf("%s\n", "Some definitions can produce warnings. Hide these by defining EVIL_NO_WARN before including `evil.h`.");
     printf("%s\n", "Some definitions can produce errors. There is no option to hide these.");
     printf("%s\n", "Definitions are expected to be created before the `evil.h` file is included.");
@@ -834,5 +835,4 @@
   #endif
 #endif
 
-#define CNOEVIL "1.0.0"
 #endif
