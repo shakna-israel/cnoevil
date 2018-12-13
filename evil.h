@@ -63,6 +63,10 @@
       printf("%s\n", "int (*max)(int, int) = lambda (int, (int x, int y) { return x > y ? x : y; });");
       printf("%s\n", "max(10, 20);");
       printf("\n%s\n\n", "int something(int (*x)(int, int), int y, int z) { return x(y, z); }");
+    } else if(strcmp(token, "comment") == 0) {
+      printf("%s\n", "This macro let's you generate comments in free-form.");
+      printf("%s\n", "e.g.");
+      printf("%s\n", "comment(Hello world. Notice this has spaces?);");
     } else {
       printf("%s\n", "Sorry, that option could not be found.");
     }
@@ -88,6 +92,7 @@
     printf("%s\n", "contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
+    printf("%s\n", "comment(...) - A variadic macro. Arguments can be anything. Creates a multiline comment. Exclude by definine `EVIL_NO_COMMENT`.");
     printf("%s\n", "CNOEVIL - A macro that is defined if this library is available.");
 
     printf("\n%s\n\n", "Available if EVIL_IO defined:");
@@ -401,6 +406,11 @@
   #define Do do{
   #define Switch(x) switch(x){
   #define Case(x) case x:
+#endif
+
+// Allow users to not use CNoEvil's comment macro.
+#ifndef EVIL_NO_COMMENT
+  #define comment(...) /* __VA_ARGS__ */
 #endif
 
 // constant is an optionally-exluded definition
