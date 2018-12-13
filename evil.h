@@ -1,5 +1,5 @@
 #ifndef CNOEVIL
-#define CNOEVIL "1.0.0"
+#define CNOEVIL "1.1.0"
 
 // Programmer's Notes
 //
@@ -92,6 +92,7 @@
     printf("%s\n", "Switch(T) - A macro, creates and opens the block of a switch statement. Exclude by defining `EVIL_NO_FLOW`.");
     printf("%s\n", "contant(Type, Name, Value) - A macro, generates a `const`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.");
+    printf("%s\n", "declare(Name, ReturnType, ...); - A variadic macro. Arguments are as in C function arguments. Declare a C function. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "comment(...) - A variadic macro. Arguments can be anything. Creates a multiline comment. Exclude by definine `EVIL_NO_COMMENT`.");
     printf("%s\n", "CNOEVIL - A macro that is defined if this library is available. It is a char* containing a version number.");
@@ -425,6 +426,7 @@
 
 // Allow users not to use our procedure definition.
 #ifndef EVIL_NO_PROC
+  #define declare(_name, _ret, ...) _ret _name(__VA_ARGS__)
   #define proc(_name, _ret, ...) _ret _name(__VA_ARGS__){
 #endif
 
