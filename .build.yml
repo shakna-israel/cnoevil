@@ -1,0 +1,9 @@
+image: alpine/edge
+packages:
+  - build-base
+sources:
+  - https://git.sr.ht/~shakna/cnoevil
+tasks:
+  - buildtest: |
+      cd cnoevil/test
+      ./test
