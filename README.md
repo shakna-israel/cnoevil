@@ -65,6 +65,30 @@ If that still fails you, open an [Issue on GitHub](https://github.com/shakna-isr
 
 ---
 
+## Versioning
+
+I plan to have very feature and every bugfix have it's own number increment, so numbers may rapidly increase.
+
+I'm roughly following semantic versioning.
+
+Thus:
+
+```MAJOR.FEATURE.BUGFIX```
+
+```MAJOR``` will only change with breaking API behaviour, and will be avoided.
+
+```FEATURE``` will bump every time something new is added to the library.
+
+```BUGFIX``` will bump every time we get a new bugfix.
+
+```FEATURE``` and ```BUGFIX``` will only ever revert to ```0``` if ```MAJOR``` increments. 
+
+So, for example, this kind of version would be possible:
+
+```1.256.893```
+
+---
+
 ## License
 
 ... You actually want to use this?
