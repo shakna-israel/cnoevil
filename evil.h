@@ -24,7 +24,7 @@
 //
 // Whitespace sensitivity is abhorrent, and should never be introduced.
 //
-// Your code should make sense once it's expanded.
+// Your code should make sense once it's expanded. (For debugging purposes.)
 //
 // Only include libraries conditionally, once needed.
 //
