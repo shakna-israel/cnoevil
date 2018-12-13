@@ -93,7 +93,7 @@
     printf("%s\n", "storage(Type, Name, Value) - A macro, generates a `static`. Exclude by defining `EVIL_NO_SPECIFIER`.");
     printf("%s\n", "proc(Name, ReturnType, ...) - A variadic macro. Arguments are as in C function arguments. Creates the start of a C function, that is, it is followed by a function body. Exclude by defining `EVIL_NO_PROC`.");
     printf("%s\n", "comment(...) - A variadic macro. Arguments can be anything. Creates a multiline comment. Exclude by definine `EVIL_NO_COMMENT`.");
-    printf("%s\n", "CNOEVIL - A macro that is defined if this library is available.");
+    printf("%s\n", "CNOEVIL - A macro that is defined if this library is available. It is a char* containing a version number.");
 
     printf("\n%s\n\n", "Available if EVIL_IO defined:");
     printf("%s\n", "The equivalent of including stdio.h");
@@ -834,5 +834,5 @@
   #endif
 #endif
 
-#define CNOEVIL
+#define CNOEVIL "1.0.0"
 #endif
