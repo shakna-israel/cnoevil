@@ -17,6 +17,8 @@ Main then
 end
 ```
 
+A larger example of using CNoEvil is [esh](https://git.sr.ht/~shakna/evilshell), a very basic shell.
+
 ---
 
 ## Usage
